@@ -65,3 +65,15 @@ export async function PUT(req: Request) {
         status: 201,
     });
 }
+
+export async function DELETE(req: Request) {
+    const body = await req.json();
+    const user = await prisma.user.delete({
+        where: {
+            id: body.id,
+        },
+    });
+    return NextResponse.json(user, {
+        status: 201,
+    });
+}
